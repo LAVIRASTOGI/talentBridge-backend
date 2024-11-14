@@ -48,11 +48,16 @@ const userSchema = new mongoose.Schema(
 
     phoneNumber: {
       type: Number,
-      validate(value) {
-        if (!validator.isMobilePhone(value)) {
-          throw new Error("InValid Phone Number" + value);
-        }
+      required: [true, "Phone number is required"],
+      validate: {
+        validator: function (v) {
+          // Validates that the number is a valid phone number
+          // Assumes phone numbers are at least 10 digits
+          return /^\d{10,}$/.test(v.toString());
+        },
+        message: (props) => `${props.value} is not a valid phone number!`,
       },
+      unique: true,
     },
     //skills are array
     skills: {
