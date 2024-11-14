@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema(
         }
       },
     },
-    yearOfExperince: {
+    yearsOfExperience: {
       type: Number,
       default: 0,
     },

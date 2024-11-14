@@ -15,7 +15,7 @@ const signUp = async (req, res) => {
       username,
       password,
       emailId,
-      yearOfExperince,
+      yearsOfExperience,
       phoneNumber,
       skills,
     } = req.body;
