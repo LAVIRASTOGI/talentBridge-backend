@@ -29,7 +29,7 @@ const signUp = async (req, res) => {
       name,
       username,
       emailId,
-      yearOfExperince,
+      yearsOfExperience,
       phoneNumber,
       skills,
       password: hashPassword,
