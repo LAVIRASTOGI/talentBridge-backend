@@ -13,10 +13,11 @@ app.use(cookieParser());
 // CORS configuration
 app.use(
   cors({
-    origin: "*", // Specify the exact origin
+    origin: true, // Specify the exact origin
     credentials: true, // Allow credentials
   })
 );
+
 //Routes
 app.use("/api/v1/", authRouter);
 
