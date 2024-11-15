@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 var cookieParser = require("cookie-parser");
 //require database
@@ -9,6 +10,13 @@ const authRouter = require("./user/routes/auth");
 //convert JSon object to the js object and add in req again
 app.use(express.json());
 app.use(cookieParser());
+// CORS configuration
+app.use(
+  cors({
+    origin: "*", // Specify the exact origin
+    credentials: true, // Allow credentials
+  })
+);
 //Routes
 app.use("/api/v1/", authRouter);
 

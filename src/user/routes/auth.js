@@ -84,7 +84,8 @@ const signIn = async (req, res) => {
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        sameSite: "none",
+        path: "/api/v1",
       };
 
       // Remove password from response
