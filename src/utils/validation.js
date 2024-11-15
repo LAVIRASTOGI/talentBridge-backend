@@ -17,6 +17,9 @@ function validateHandlerSignUp(validateData) {
   if (password?.length < 8) {
     throw new Error("Password should be at least 8 characters");
   }
+  if (phoneNumber?.length !== 10) {
+    throw new Error("Phone number should be 10 digits");
+  }
 
   if (!validator.isStrongPassword(password)) {
     throw new Error("Password should be contain atleast 1 numeric character");
