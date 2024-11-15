@@ -56,31 +56,19 @@ const signUp = async (req, res) => {
 
 const signIn = async (req, res) => {
   try {
-    const { password, emailId, username } = req.body;
-    let user = "";
-    if (emailId) {
-      user = await User.findOne({ emailId });
-      validateHandlerLogin(req.body);
-      if (!user) {
-        return res.status(401).json({
-          success: false,
-          error: "Invalid credentials",
-        });
-      }
-    } else if (username) {
-      user = await User.findOne({ username });
-      if (!user) {
-        return res.status(401).json({
-          success: false,
-          error: "Invalid credentials",
-        });
-      }
-    } else {
+    const { password, email_username } = req.body;
+
+    const user = await User.findOne({
+      $or: [{ emailId: email_username }, { username: email_username }],
+    });
+    validateHandlerLogin(req.body);
+    if (!user) {
       return res.status(401).json({
         success: false,
         error: "Invalid credentials",
       });
     }
+
     if (user) {
       const isPasswordValid = await user.comparePassword(password);
       if (!isPasswordValid) {

@@ -28,9 +28,12 @@ function validateHandlerSignUp(validateData) {
   }
 }
 function validateHandlerLogin(validateData) {
-  const { password } = validateData;
+  const { password, email_username } = validateData;
   if (!password) {
     throw new Error("Password is required");
+  }
+  if (!email_username) {
+    throw new Error("Email/UserName is required");
   }
 }
 
